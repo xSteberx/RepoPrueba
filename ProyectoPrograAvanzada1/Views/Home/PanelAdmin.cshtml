@@ -1,0 +1,102 @@
+﻿@{
+    ViewData["Title"] = "PanelAdmin";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="~/js/ScriptsReportes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Content -->
+<div >
+    <div class="topbar">
+    </div>
+    <div class="row" style="margin-top: 100px; ">
+        <div >
+            <!-- Cards con gráficos -->
+            <div class="col-md-9" style="margin-left: 40vh">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header text-black">
+                                USUARIOS CREADOS Y ACTIVOS
+                            </div>
+                            <div class="card-body text-center" style="height: 20vh">
+                                <span id="numeroUsuarios" style="font-size: 70px; color: black; font-weight: bold; margin-top: 2vh"></span>
+                                <p><span class="online_animation"></span> Online</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card" style="width: 50vh">
+                            <div class="card-header text-black">
+                                VENTAS DEL MES
+                            </div>
+                            <div class="card-body text-center" ">
+                                <canvas id="reporteventasmensual" height="200px"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card" style="margin-left: 40px; position: relative;">
+                            <div class="card-header text-black">
+                                VENTAS DEL DIA
+                            </div>
+                            <div class="card-body text-center" style="height: 20vh">
+                                <span id="numeroVentas" style="font-size: 70px; color: black; font-weight: bold; margin-top: 2vh"></span>
+                            </div>
+                            <div style="position: absolute; top: 170px; left: 50%;">
+                                <lord-icon src="https://cdn.lordicon.com/zsaomnmb.json"
+                                           trigger="loop"
+                                           style="width: 50px; height: 60px; transform: translateX(-50%);">
+                                </lord-icon>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    
+                </div>
+            </div>
+        </div>
+       
+    </div>
+    <div class="row" style="margin-top: 80px; ">
+        <div>
+            <!-- Cards con gráficos -->
+            <div class="col-md-9" style="margin-left: 40vh">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card text-black" style="width:145vh">
+                            <div class="card-header">
+                                STOCK DE INVENTARIO
+                            </div>
+                            <div class="card-body">
+                                <canvas id="reporteproductos" ></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row" style="margin-top: 100px; ">
+        <div>
+            <!-- Cards con gráficos -->
+            <div class="col-md-9 mb-5" style="margin-left: 40vh">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card" style="width: 145vh">
+                            <div class="card-header text-black">
+                                Productos Mas Vendidos
+                            </div>
+                            <div class="card-body text-center">
+                                <canvas id="reportecontproductos"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- end Content -->

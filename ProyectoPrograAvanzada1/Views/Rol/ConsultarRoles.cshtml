@@ -1,0 +1,114 @@
+﻿@model List<ProyectoPrograAvanzada1.Entities.Rol>
+@{
+    ViewData["Title"] = "ConsultarRoles";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+cript src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<div class="container-fluid content-header">
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <br />
+            <div class="card">
+                <div class="card-header" style="background-color: #AB5A00">
+                    <br />
+                    <br />
+                    <br />
+                    <h3 class="card-title" style="color:#670803; font-weight: bold">Mantenimiento de Roles</h3>
+
+                    <div style="text-align:right">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalrol">
+                            + Crear Rol
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <table id="tablaroles" class="table" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>IDRol</th>
+                                <th>Nombre</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.IdRol</td>
+                                    <td>@item.Nombre</td>
+                                    <td>
+                                        <a type="submit" class="btn-actualizar" data-idrol="@item.IdRol" data-toggle="modal" data-target="#actualizamodalrol" onclick="consultarRol(this)">
+                                            <i class="fa-solid fa-pen-to-square" style="color:yellowgreen; font-size: 30px"></i>
+                                        </a>
+                                        <a type="submit" onclick="eliminarol(this)" class="eliminar-rol" data-idrol="@item.IdRol">
+                                            <i class="fa-solid fa-trash-can  ml-3" style="color:darkred; font-size: 30px"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalrol" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Crear Nuevo Rol</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="crearRolForm">
+                    <div class="form-group">
+                        <label for="Nombre">Nombre de Rol:</label>
+                        <input type="text" class="form-control" id="Nombre" name="Nombre">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="crearNuevoRol()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="actualizamodalrol" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Actualizar Rol</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="actualizarRolForm">
+                    <div class="form-group">
+                        <label for="NombreRol">Nombre de Rol:</label>
+
+                        <input type="hidden" id="IdRol" name="IdRol" style="display: none;">
+
+                        <input type="text" class="form-control" id="NombreRol" name="Nombre">
+                    </div>
+                    <input type="hidden" id="idRolActualizar" name="IdRol" />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="guardarCambiosRol()">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>

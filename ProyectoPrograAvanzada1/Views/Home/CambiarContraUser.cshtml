@@ -1,0 +1,82 @@
+﻿@model ProyectoPrograAvanzada1.Entities.Usuario
+
+
+@{
+	ViewData["Title"] = "CambiarContrasenna";
+	Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
+
+}
+
+<head>
+	<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+	<link href="https://fonts.gstatic.com" rel="preconnect" />
+	<link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;display=swap" rel="stylesheet" />
+	<link href="~/css/EstilosInicioSesion.css" rel="stylesheet" />
+</head>
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-lg-6">
+            <div class="card">
+                <h2 style="text-align: center" class="mt-2">Cambio de Contraseña</h2>
+                <div class="card-body py-5 px-md-5">
+                    <form novalidate>
+                    <div class="form-outline mb-4 d-flex align-items-center">
+                        <i class="fas fa-key me-3"></i>
+                            @Html.TextBoxFor(m => m.ContrasennaNueva, new
+                                {
+                                    @class = "form-control",
+                                    @placeholder = "Contraseña Nueva",
+                                    @type = "password",
+                                    @pattern = "^((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\\W]).{6,20})",
+                                    @id = "ContrasennaNueva"
+                                })
+                    </div>
+                    <div class="form-outline mb-4 d-flex align-items-center">
+                        <i class="fas fa-key me-3"></i>
+                        @Html.TextBoxFor(m => m.ContrasennaNueva, new
+                            {
+                                @class = "form-control",
+                                @placeholder = "Confirmar Contraseña",
+                                @type = "password",
+                                @pattern = "^((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\\W]).{6,20})",
+                                @id = "ContrasennaNueva2"
+                            })
+
+                    </div>
+                    @if (ViewBag.MsjPantalla != null)
+                    {
+                        <div class="alert alert-warning" role="alert" style="text-align:center">
+                            @ViewBag.MsjPantalla
+                        </div>
+                    }
+                    <div class="text-center">
+                            <button type="button" class="btn btn-primary btn-block mb-4" onclick="cambiacontrauser()">
+                                Cambiar Contraseña
+                            </button>
+
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-3">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body py-3 px-md-4">
+                    <h5 class="card-title">Requisitos de la Contraseña</h5>
+                    <ul>
+                        <li>Debe contener al menos un número.</li>
+                        <li>Debe contener al menos una letra minúscula.</li>
+                        <li>Debe contener al menos una letra mayúscula.</li>
+                        <li>Debe contener al menos un carácter especial.</li>
+                        <li>Debe tener entre 6 y 20 caracteres.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

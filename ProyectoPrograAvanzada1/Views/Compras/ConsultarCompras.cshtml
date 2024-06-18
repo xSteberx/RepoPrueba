@@ -1,0 +1,138 @@
+﻿@model List<ProyectoPrograAvanzada1.Entities.Compras>
+@{
+    ViewData["Title"] = "ActualizarProducto";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<div class="container-fluid content-header mt-5">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <br />
+            <div class="card" style="margin-block:initial">
+                <div class="card-header " style="background-color: #AB5A00">
+                    <br />
+                    <br />
+                    <br />
+                    <h3 class="card-title" style="color:#670803; font-weight: bold">Auditoria de Compras</h3>
+                    <div style="text-align:right">
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table id="tablausuario" class="table mx-auto">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Usuario</th>
+                                <th>Fecha</th>
+                                <th>Subtotal</th>
+                                <th>Total</th>
+                                <th>Ver Detalles</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.IdCompra</td>
+                                    <td>@item.NombreUsuario</td>
+                                    <td>@item.Fecha.ToString("dd/MM/yyyy hh:mm:ss tt")</td>
+                                    <td>@item.Subtotal.ToString("N2")</td>
+                                    <td>@item.Total.ToString("N2")</td>
+
+                                    <td>
+                                        <a type="submit" data-idcompra="@item.IdCompra" data-toggle="modal" data-target="#modaldetalles" onclick="verDatos(this)">
+                                            <lord-icon src="https://cdn.lordicon.com/vfczflna.json"
+                                                       trigger="hover"
+                                                       style="width:30px;height:30px">
+                                            </lord-icon>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Modal para crear productos*@
+<div class="modal fade" id="modaldetalles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detalles de la Compra</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nombre del Producto</th>
+                            <th>Fecha de la Compra</th>
+                            <th>Total Pagado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaProductos">
+                        <!-- Aquí se mostrarán los productos -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function verDatos(element) {
+        var idCompra = element.getAttribute('data-idcompra');
+        fetch('/Compras/ConsultarDetalleCompras?IdCompra=' + idCompra)
+            .then(response => response.json())
+            .then(data => {
+                if (data != null) {
+                    document.getElementById('tablaProductos').innerHTML = '';
+                    data.forEach(producto => {
+                        var row = `<tr>
+                                        <td>${producto.nombre}</td>
+                                        <td>${producto.fecha}</td>
+                                        <td>${producto.total}</td>
+                                   </tr>`;
+                        document.getElementById('tablaProductos').insertAdjacentHTML('beforeend', row);
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error de Carga',
+                        text: 'Error al cargar los datos!',
+                        showConfirmButton: false
+                    });
+                }
+            })
+            .catch(error => console.error('Error al consultar el USU:', error));
+    }
+
+
+
+    function ValidarNumeros(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+
+        if (charCode >= 48 && charCode <= 57) {
+            return true;
+        }
+        else if (charCode == 46) {
+            var txt = document.getElementById(evt).value;
+            if (!(txt.indexOf(".") > -1)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+</script>

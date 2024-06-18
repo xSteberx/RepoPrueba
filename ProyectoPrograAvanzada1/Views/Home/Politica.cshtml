@@ -1,0 +1,60 @@
+﻿@model ProyectoPrograAvanzada1.Entities.Usuario
+@{
+    ViewData["Title"] = "IniciarSesion";
+    Layout = "~/Views/Shared/_Layout - Externo.cshtml";
+}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<head>
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;display=swap" rel="stylesheet" />
+    <link href="~/css/EstilosInicioSesion.css" rel="stylesheet" />
+    <link href="~/css/EstilosPolitica.css" rel="stylesheet" />
+</head>
+
+<body>
+    <a href="@Url.Action("IniciarSesion", "Home")" id="volver-atras" class="mt-5" style="margin-right: 170vh; background-color: #343a40; color: white; border: none; padding: 10px 20px; font-size: 16px; border-radius: 5px;">
+        <i class="fa fa-arrow-left" style="margin-right: 10px; "></i>Volver Atrás
+    </a>
+
+    <div id="logo-container">
+        <img src="~/Imagenes/logo.jpg"   alt="Logo de Amalusa Productos Artesanales">
+    </div>
+
+    <h1>Políticas de la Página - Amalusa Productos Artesanales</h1>
+    <main>
+       
+        <section id="politica-privacidad">
+            <h2>Política de Privacidad</h2>
+            <p>En Amalusa Productos Artesanales, nos tomamos muy en serio la protección de tu privacidad. Por ello, hemos desarrollado una detallada <a href="#politica-privacidad">Política de Privacidad</a> que describe cómo recopilamos, utilizamos, protegemos y gestionamos tus datos personales. Garantizamos que tus datos nunca serán vendidos o compartidos con terceros sin tu consentimiento explícito.</p>
+        </section>
+        <section id="terminos-condiciones">
+            <h2>Términos y Condiciones</h2>
+            <p>Al acceder y utilizar nuestro sitio web, aceptas cumplir con nuestros completos <a href="#terminos-condiciones">Términos y Condiciones</a>, los cuales rigen tu relación con nosotros. Estos términos abarcan aspectos como el uso del sitio, la compra de productos, el registro de cuenta, la participación en promociones, y cualquier otra interacción que realices con nosotros. Te recomendamos leerlos detenidamente para comprender tus derechos y responsabilidades.</p>
+        </section>
+        <section id="politica-pagos">
+            <h2>Política de Pagos</h2>
+            <p>Nuestra <a href="#politica-pagos">Política de Pagos</a> detalla los métodos de pago que aceptamos, los procesos de facturación, los términos de pago y cualquier otra información relevante relacionada con las transacciones financieras en nuestro sitio. Aceptamos una amplia variedad de métodos de pago seguros para garantizar que tus compras sean convenientes y seguras. Puedes encontrar más detalles sobre nuestras políticas de pago en nuestra página completa de políticas.</p>
+        </section>
+        <section id="politica-envios">
+            <h2>Política de Envíos</h2>
+            <p>Nuestra <a href="#politica-envios">Política de Envíos</a> describe los procedimientos de envío, los plazos de entrega estimados, las tarifas de envío aplicables y cualquier otra información relevante relacionada con la entrega de productos. Trabajamos con servicios de envío confiables para garantizar que tus pedidos lleguen a ti de manera rápida y segura. Consulta nuestra página completa de políticas para obtener información detallada sobre el proceso de envío.</p>
+        </section>
+        <section id="politica-devoluciones">
+            <h2>Política de Devoluciones y Reembolsos</h2>
+            <p>Queremos que estés completamente satisfecho con tus compras en Amalusa Productos Artesanales. Si por alguna razón necesitas devolver un producto, consulta nuestra <a href="#politica-devoluciones">Política de Devoluciones y Reembolsos</a> para obtener información sobre los requisitos de elegibilidad, los procedimientos de devolución, los plazos y las opciones de reembolso disponibles. Nos esforzamos por proporcionar un proceso de devolución fácil y sin complicaciones para garantizar tu satisfacción total como cliente.</p>
+        </section>
+        <section id="politica-proteccion-consumidor">
+            <h2>Política de Protección al Consumidor</h2>
+            <p>En Amalusa Productos Artesanales, nos comprometemos a proteger tus derechos como consumidor. Siempre revisaremos cuidadosamente tu pedido para asegurarnos de que recibas los productos exactos que solicitaste y en perfecto estado. Si encuentras algún problema con tu pedido, no dudes en contactarnos y haremos todo lo posible para resolverlo de manera rápida y satisfactoria para ti.</p>
+        </section>
+        <section id="contacto">
+            <h2>Contáctanos</h2>
+            <p>Si tienes alguna pregunta, inquietud o comentario sobre nuestras políticas o cualquier otro aspecto de nuestro negocio, no dudes en <a href="@Url.Action("Contacto2", "Home")">contactarnos</a>. Nuestro equipo de atención al cliente estará encantado de ayudarte y proporcionarte la asistencia que necesites. Tu opinión es importante para nosotros y siempre estamos aquí para ayudarte.</p>
+        </section>
+    </main>
+
+</body>
+<script src="~/newfolder/js/scripts.js"></script>

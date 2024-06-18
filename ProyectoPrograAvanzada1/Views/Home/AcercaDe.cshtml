@@ -1,0 +1,96 @@
+﻿@model ProyectoPrograAvanzada1.Entities.Usuario
+
+@{
+    ViewData["Title"] = "IniciarSesion";
+    Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amalusa Productos Artesanales</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa; /* gris claro */
+            color: #333; /* color de texto principal */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .jumbotron {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+            background-color: #fff; /* fondo blanco */
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+            .jumbotron h1 {
+                font-size: 3.5rem;
+                font-weight: 700;
+                color: #28a745; /* verde Bootstrap */
+                margin-bottom: 1.5rem;
+            }
+
+            .jumbotron h2 {
+                font-size: 2.5rem;
+                font-weight: 600;
+                color: #333; /* color de texto principal */
+                margin-bottom: 1rem;
+            }
+
+            .jumbotron p {
+                font-size: 1.25rem;
+                line-height: 1.6;
+                margin-bottom: 1.5rem;
+            }
+
+            .jumbotron img {
+                max-width: 100%;
+                height: auto;
+                margin-top: 2rem;
+                border-radius: 15px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h1 class="display-1">Amalusa Productos Artesanales</h1>
+                    <img src="@Url.Content("~/Imagenes/logo.jpg")" alt="Logo de Amalusa Productos Artesanales">
+                </div>
+                <div class="col-lg-6">
+                    <h2>Acerca de Nosotros</h2>
+                    <p>
+                        En Amalusa, nos dedicamos a la creación y producción de productos artesanales de la más alta calidad. Desde nuestras salsas picantes hasta nuestros vinos y mermeladas, cada producto es elaborado con cuidado y pasión para ofrecer a nuestros clientes una experiencia culinaria única y deliciosa.
+                    </p>
+                    <p>
+                        En Amalusa, creemos en la importancia de utilizar ingredientes frescos y naturales en nuestros productos. Por eso, trabajamos en estrecha colaboración con agricultores locales para obtener los mejores productos para nuestras recetas. Cada salsa, chilera, vino y mermelada que producimos es cuidadosamente elaborada a mano en pequeños lotes, lo que garantiza su frescura y sabor excepcionales.
+                    </p>
+                    <p>
+                        Además de nuestro compromiso con la calidad, también nos preocupamos por el medio ambiente y la comunidad. Por eso, nos esforzamos por utilizar envases sostenibles y apoyar iniciativas locales que promueven la agricultura sostenible y el desarrollo comunitario.
+                    </p>
+                    <p>
+                        En Amalusa, estamos orgullosos de ofrecer a nuestros clientes productos artesanales de alta calidad que realzan cualquier comida y celebran los sabores auténticos de nuestra región. ¡Gracias por ser parte de nuestra historia y por elegir nuestros productos para acompañar tus momentos especiales!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/javascriptnuevo/filtro_busqueda.js"></script>
+
+</body>
+</html>

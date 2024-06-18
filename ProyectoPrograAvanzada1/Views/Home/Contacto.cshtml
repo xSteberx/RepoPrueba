@@ -1,0 +1,44 @@
+﻿@model ProyectoPrograAvanzada1.Entities.Usuario
+
+@{
+    ViewData["Title"] = "IniciarSesion";
+    Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
+}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<div class="">
+    <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+        <div class="container">
+            <div class="row gx-lg-5 align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h1 class="my-5 display-3 fw-bold ls-tight">
+                        <span class="text-success">Amalusa Productos Artesanales </span>
+                    </h1>
+
+
+                    <div style="background-image: url('@Url.Content("~/Imagenes/logo.jpg")'); background-size: cover; background-position: center center; background-repeat: no-repeat; height: 40vh;">
+                    </div>
+                    <br />
+                    <div>
+                        <h2 class="text-success text-center">Contacto</h2>
+                        <p style="font-family: Arial, sans-serif; text-justify">
+
+
+                            En Amalusa tenemos diferentes contactos que pueden ayudar a que puedas contactarnos de una manera más rapida y eficiente
+                        </p>
+
+                        <p style="font-family: Arial, sans-serif; ">
+                            Email: info@amasula.com
+                            Teléfono: +1234567890
+                        </p>
+                        <br>
+                        <br>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="~/javascriptnuevo/filtro_busqueda.js"></script>

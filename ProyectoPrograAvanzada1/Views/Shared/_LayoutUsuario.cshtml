@@ -1,0 +1,154 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>AMASULA ARTESANAL</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="~/css/styles.css" rel="stylesheet" />
+    <link href="~/css/PoliticaEstilos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <nav class="navbar navbar-expand-lg " style="background-color: #464648">
+        <div class="container">
+
+            <!-- Brand -->
+            <a class="navbar-brand text-white" href="@Url.Action("PantallaInicio", "Home")"><i class="fa-solid fa-store"></i> AMASULA ARTESANAL</a>
+
+            <!-- Toggle button (hamburguesa) -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+
+                        <a href="@Url.Action("PantallaInicio", "Home")" type="submit" class="nav-link text-white" style="display: flex; align-items: center;">
+                            <lord-icon src="https://cdn.lordicon.com/ryfqrglk.json"
+                                       id="icon"
+                                       trigger="loop"
+                                       style="width: 24px; height: 24px;">
+                            </lord-icon>
+                            <span style="margin-right: 4px; display: inline-block;">
+                                Productos
+                            </span>
+                        </a>
+
+                    </li>
+
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white"  id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="display: flex; align-items: center;">
+                            <lord-icon src="https://cdn.lordicon.com/xcxzayqr.json"
+                                       trigger="loop"
+                                       state="hover-nodding"
+                                       colors="primary:#6c16c7,secondary:#ffc738"
+                                       style="width: 24px; height: 24px;">
+                            </lord-icon> 
+                            Mi cuenta
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                            <a class="dropdown-item" href="@Url.Action("CambiarContraUser", "Home")">Cambiar Contraseña</a>
+                            @if (HttpContextAccessor.HttpContext?.Session.GetString("Rol") == "Administrador")
+                            {
+
+                                <a class="dropdown-item" href="@Url.Action("PanelAdmin", "Home")">Auditorias</a>
+                            }
+
+                            <a class="dropdown-item" href="@Url.Action("CerrarSesion", "Home")">Cerrar sesión</a>
+                        </div>
+                    </li>
+
+
+                    <li class="nav-item" style="display: flex; align-items: center;">
+                        <lord-icon src="https://cdn.lordicon.com/qwjfapmb.json"
+                                   trigger="loop"
+                                   style="width: 24px; height: 24px;">
+                        </lord-icon>
+                        <a   class="nav-link text-white" href="@Url.Action("AcercaDe", "Home")">Acerca De</a>
+                    </li>
+                    <li class="nav-item" style="display: flex; align-items: center;">
+                        <lord-icon src="https://cdn.lordicon.com/egmlnyku.json"
+                                   trigger="loop"
+                                   style="width: 24px; height: 24px;">
+                        </lord-icon>
+                        <a class="nav-link text-white" href="@Url.Action("Contacto", "Home")">Contacto</a>
+                    </li>
+
+                    <li class="nav-item" id="carritoNavItem" style="position: relative;">
+                        <a class="nav-link text-white" href="@Url.Action("Carrito", "Carrito")" style="display: flex; align-items: center;">
+                            <lord-icon src="https://cdn.lordicon.com/cosvjkbu.json"
+                                       trigger="loop"
+                                       colors="primary:#ebe6ef,secondary:#646e78,tertiary:#c71f16"
+                                       style="width: 24px; height: 24px;">
+                            </lord-icon>
+                            <span id="carritoCantidad" class="badge badge-pill badge-danger" style="position: absolute; top: -8px; right: -8px; width: 20px; height: 20px; border-radius: 50%; text-align: center; line-height: 20px; display: flex; justify-content: center; align-items: center;">1</span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
+
+
+        </div>
+    </nav>
+
+
+
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_content">
+            <main>
+                @RenderBody()
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Contacto</h5>
+                            <p>Para cualquier consulta, contáctenos en:</p>
+                            <p>Email: info@amasula.com</p>
+                            <p>Teléfono: +1234567890</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="@Url.Action("Politica2", "Home")">Política de Privacidad</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <p class="mt-3">© Todos los derechos reservados - AMASULA ARTESANAL 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/adminlte.min.js"></script>
+    <script src="~/js/filtro_busqueda.js"></script>
+    <script src="~/js/AlertasCarrito.js"></script>
+    <script src="~/js//ScriptsCarrito.js"></script>
+    <script src="~/js/scripts.js"></script>
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+
+</body>
+
+</html>

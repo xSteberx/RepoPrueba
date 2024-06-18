@@ -1,0 +1,103 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>AMASULA ARTESANAL</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="~/css/styles.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css">
+    <link rel="stylesheet" href="~/css2/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css2/style.css" />
+    <link rel="stylesheet" href="~/css2/colors.css" />
+
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+</head>
+<body style=" background-color: rgba(21, 40, 60, 0.90);  ">
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar  -->
+            <div class="col-lg-3">
+                <nav id="sidebar" class="fixed-top" style="position: fixed">
+                    <div class="sidebar_blog_1">
+                        <div class="sidebar-header">
+                        </div>
+                        <div class="sidebar_user_info">
+                            <div class="icon_setting"></div>
+                            <div class="user_profle_side">
+                                <div class="user_img"><i class="fa-solid fa-circle-user p-3 mt-1 ml-4" style="font-size:40px"></i> </div>
+                                <div class="user_info">
+                                    <h6>@HttpContextAccessor.HttpContext?.Session.GetString("Nombre")</h6>
+                                    <p><span class="online_animation"></span> Online</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar_blog_2">
+                        <a href="@Url.Action("PanelAdmin", "Home")"><h4><i style="color:red" class="fa-solid fa-table-columns"></i> DASHBOARD</h4></a>
+
+                        <ul class="list-unstyled components">
+                            <li><a href="@Url.Action("ConsultarUsuarios", "Usuario")" style="font-size: 27px; font-weight: bold; font-family: Times New Roman"><i class="fa-solid fa-user" style="color: green"></i> <span>Usuarios</span></a></li>
+                            <li><a href="@Url.Action("ConsultarProductos", "Producto")" style="font-size: 27px; font-weight: bold; font-family: Times New Roman"><i class="fa-solid fa-boxes-stacked" style="color: yellow"></i> <span>Inventario</span></a></li>
+                            <li><a href="@Url.Action("ConsultarCategorias", "Categoria")" style="font-size: 27px; font-weight: bold; font-family: Times New Roman"><i class="fa-solid fa-layer-group" style="color: purple"></i> <span>Categorias</span></a></li>
+                            <li><a href="@Url.Action("ConsultarRoles", "Rol")" style="font-size: 27px; font-weight: bold; font-family: Times New Roman"><i class="fa-solid fa-users" style="color: darkcyan"></i> <span>Roles</span></a></li>
+                            <li><a href="@Url.Action("ConsultarCompras", "Compras")" style="font-size: 27px; font-weight: bold; font-family: Times New Roman"><i class="fa-solid fa-dollar-sign" style="color: darkred"></i> <span>Compras</span></a></li>
+
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <!-- end Sidebar -->
+            @RenderBody()
+            <!-- Content -->
+            <div class="col-lg-9 offset-lg-3">
+                <div class="topbar">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="container-fluid">
+                            <div class="navbar-brand">
+                                <span style="color: white; font-weight: bold; font-size: 40px; font-family: 'Lucida Handwriting'">AMALUSA ADMINISTRACION</span>
+                            </div>
+                            <!-- Dropdown -->
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i style="font-size: 35px; color: white" class="fa-solid fa-gear"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="@Url.Action("PantallaInicio", "Home")" style="color: black; font-weight: 600;">Volver al Inicio</a>
+                                        <a class="dropdown-item" href="@Url.Action("CambiarContraUser", "Home")" style="color: black; font-weight: 600;">Cambiar Contraseña</a>
+                                        <a class="dropdown-item" href="@Url.Action("CerrarSesion", "Home")" style="color: black; font-weight: 600;">Cerrar sesión</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <!-- /Dropdown -->
+                        </div>
+                    </nav>
+                </div>
+
+            </div>
+            <!-- end Content -->
+        </div>
+    </div>
+
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/adminlte.min.js"></script>
+    <script src="~/js/OrdenTablas.js"></script>
+    <script src="~/js/ScriptsUsuario.js"></script>
+    <script src="~/js/ScriptsRol.js"></script>
+    <script src="~/js/ScriptsCategoria.js"></script>
+    <script src="~/js/ScriptsProducto.js"></script>
+    <script src="~/js/ScriptsReportes.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+</body>
+</html>

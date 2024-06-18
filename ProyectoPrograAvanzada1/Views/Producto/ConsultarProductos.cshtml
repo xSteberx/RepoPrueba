@@ -1,0 +1,179 @@
+﻿@model List<ProyectoPrograAvanzada1.Entities.Producto>
+
+@{
+    ViewData["Title"] = "ActualizarProducto";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<div class="container-fluid content-header mt-5">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <br />
+            <div class="card" style="margin-block:initial">
+                <div class="card-header " style="background-color: #AB5A00">
+                    <br />
+                    <br />
+                    <br />
+                    <h3 class="card-title" style="color:#670803; font-weight: bold">Mantenimiento de Productos</h3>
+                    <div style="text-align:right">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalproducto">
+                            + Crear Producto
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table id="tablausuario" class="table mx-auto">
+                        <thead>
+                            <tr>
+                                <th>IDProducto</th>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Categoria</th>
+                                <th>Estado</th>
+                                <th>Stock</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.IdProducto</td>
+                                    <td>@item.Nombre</td>
+                                    <td>₡@item.Precio</td>
+                                       
+                                    <td>@item.NombreCategoria</td>
+                                    @if (item.Estado)
+                                    {
+                                        <td style="background-color: green; border-radius: 25px; font-weight: bold; width: 50px; height: 20px;" class="text-center text-white">Activo</td>
+                                    }
+                                    else
+                                    {
+                                        <td style="background-color: red; border-radius: 25px; font-weight: bold;" class="text-center text-white">Inactivo</td>
+                                    }
+                                    <td>@item.Stock</td>
+                                    <td>
+                                        <a type="submit" class="btn-actualizar" data-idproducto="@item.IdProducto" data-toggle="modal" data-target="#actualizamodalproducto" onclick="consultarProducto(this)">
+                                            <i class="fa-solid fa-pen-to-square" style="color:yellowgreen; font-size: 30px"></i>
+                                        </a>
+                                        <a type="submit" onclick="eliminaproducto(this)" class="eliminar-producto" data-idproducto="@item.IdProducto">
+                                            <i class="fa-solid fa-trash-can  ml-3" style="color:darkred; font-size: 30px"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Modal para crear productos*@
+<div class="modal fade" id="modalproducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Crear Nuevo Producto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="crearProductoForm">
+                    <div class="form-group">
+                        <label for="Nombre">Nombre del Producto:</label>
+                        <input id="Nombre" name="Nombre" class="form-control" type="text" placeholder="Nombre Producto" required />
+                        <label for="Precio">Precio:</label>
+                        <input id="Precio" name="Precio" class="form-control" type="number" placeholder="Precio" min="0" onkeypress="return ValidarNumeros(this.id)" onpaste="return false;" required />
+                        <label for="Categoria">Categoria:</label>
+                        <select id="IdCategoria" name="IdCategoria" class="form-control" required>
+                            <option value="">Seleccione una Categoria</option>
+                            @foreach (var categoria in ViewBag.Categorias)
+                            {
+                                <option value="@categoria.IdCategoria">@categoria.Nombre</option>
+                            }
+                        </select>
+                        <label for="Stock">Cantidad:</label>
+                        <input id="Stock" name="Stock" class="form-control" type="number" placeholder="Cantidad de Productos" required />
+                        <label>Imagen</label>
+                        <input accept="image/png" id="Imagen" name="Imagen" class="form-control" type="file" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="crearNuevoProducto()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function ValidarNumeros(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+
+        if (charCode >= 48 && charCode <= 57) {
+            return true;
+        }
+        else if (charCode == 46) {
+            var txt = document.getElementById(evt).value;
+            if (!(txt.indexOf(".") > -1)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+</script>
+
+@* Modal para actualizar la informacion del producto*@
+<div class="modal fade" id="actualizamodalproducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Actualizar Producto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="actualizarProductoForm">
+                    <div class="form-group">
+                        <label for="Nombre">Nombre del Producto:</label>
+                        <input id="IdProducto" name="IdProducto" class="form-control" type="hidden" />
+                        <input id="NombreProducto" name="NombreProducto" class="form-control" type="text" placeholder="Nombre Producto" required />
+                        <label for="PrecioProducto">Precio:</label>
+                        <input id="PrecioProducto" name="PrecioProducto" class="form-control" type="number" placeholder="Precio" min="0" onkeypress="return ValidarNumeros(this.id)" onpaste="return false;" required />
+                        <label for="IdCategoriaProducto">Categoria:</label>
+                        <select id="IdCategoriaProducto" name="IdCategoriaProducto" class="form-control" required>
+                            <option value="">Seleccione una Categoria</option>
+                            @foreach (var categoria in ViewBag.Categorias)
+                            {
+                                <option value="@categoria.IdCategoria">@categoria.Nombre</option>
+                            }
+                        </select>
+                        <label for="Stock">Cantidad:</label>
+                        <input id="StockProds" name="StockProds" class="form-control" type="number" min="0" placeholder="Cantidad de Productos" required />
+                        <label for="Estado">Estado:</label>
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="EstadoSwitch" name="Estado" value="true">
+                            <label id="EstadoLabel" class="custom-control-label" for="EstadoSwitch">Activo</label>
+                        </div>
+                        <label>Imagen</label>
+                        <input accept="image/png" id="ImagenProductoInput" name="ImagenProducto" class="form-control" type="file" required>
+                        <br />
+                        <img id="ImagenProductoPreview" src="#" style="max-width: 400px; max-height: 1000px;" />
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="guardarCambiosProducto()">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>

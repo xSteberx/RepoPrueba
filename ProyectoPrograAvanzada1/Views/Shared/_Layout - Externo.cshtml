@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<title>Amalusa Artesanal</title>
+	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+	<link href="~/css/styles.css" rel="stylesheet" />
+	
+	<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+	<title>AMASULA ARTESANAL</title>
+
+	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+	<link href="~/css/styles.css" rel="stylesheet" />
+	<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+<div>
+	<video class="bg-video" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop"><source src="~/Videos/3298716-hd_1080_2048_25fps.mp4" type="video/mp4" /></video>
+</div>
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000000D9">
+	<div class="container">
+		<!-- Brand -->
+		<a class="navbar-brand" href="@Url.Action("IniciarSesion", "Home")"><i class="fa-solid fa-store"></i> AMASULA ARTESANAL</a>
+
+		<!-- Toggle button (hamburguesa) -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- Navbar links -->
+		<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+			<ul class="navbar-nav">
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div id="layoutSidenav">
+	<div id="layoutSidenav_content">
+		<main>
+			@RenderBody()
+		</main>
+		<footer class="py-4 bg-light mt-auto">
+			<div class="container-fluid px-4">
+				<div class="d-flex align-items-center justify-content-between small">
+					<div class="text-muted">Copyright &copy; Todos los derechos Reservados 2024</div>
+					<div>
+							<a href="@Url.Action("Politica", "Home")">Politica de Privacidad</a>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+
+</div>
+<script src="~/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/adminlte.min.js"></script>
+	<script src="~/js/ScriptsHome.js"></script>
+	<script src="https://cdn.lordicon.com/lordicon.js"></script>
+</body>
+</html>
+

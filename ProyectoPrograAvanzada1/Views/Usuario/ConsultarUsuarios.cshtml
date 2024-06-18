@@ -1,0 +1,145 @@
+﻿@model List<ProyectoPrograAvanzada1.Entities.Usuario>
+
+@{
+    ViewData["Title"] = "ConsultarUsuarios";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="container-fluid content-header mt-5">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <br />
+            <div class="card" style="margin-block:initial">
+                <div class="card-header " style="background-color: #AB5A00">
+                    <br />
+                    <br />
+                    <br />
+                    <h3 class="card-title" style="color:#670803; font-weight: bold">Mantenimiento de Usuarios</h3>
+                    <div style="text-align:right">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalusuario">
+                            + Crear Usuario
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table id="tablausuario" class="table mx-auto">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Rol</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.NombreUsuario</td>
+                                    <td>@item.Correo</td>
+                                    <td>@item.NombreRol</td>
+                                    @if (item.Estado)
+                                    {
+                                        <td style="background-color: green; border-radius: 25px; font-weight: bold; width: 50px; height: 20px;" class="text-center text-white">Activo</td>
+                                    }
+                                    else
+                                    {
+                                        <td style="background-color: red; border-radius: 25px; font-weight: bold;" class="text-center text-white">Inactivo</td>
+                                    }
+                                    <td>
+                                        <a type="submit" class="btn-actualizar" data-idroluser="@item.IdUsuario" data-toggle="modal" data-target="#actualizamodalusuario" onclick="consultarUsuario(this)">
+                                            <i class="fa-solid fa-pen-to-square" style="color:yellowgreen; font-size: 30px"></i>
+                                        </a>
+                                        <a type="submit" onclick="eliminausuario(this)" class="eliminar-usuario" data-idusuario="@item.IdUsuario">
+                                            <i class="fa-solid fa-trash-can  ml-3" style="color:darkred; font-size: 30px"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Modal para crear usuarios*@
+<div class="modal fade" id="modalusuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Crear Nuevo Usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="crearUsuarioForm">
+                    <div class="form-group">
+                        <label for="Nombre">Nombre de Usuario:</label>
+                        <input id="NombreUsuario" name="NombreUsuario" class="form-control" type="text" placeholder="Nombre Usuario" required />
+                        <label for="Nombre">Correo Electronico:</label>
+                        <input id="Correo" name="Correo" class="form-control" type="email" placeholder="Correo Electronico" required />
+                        <label for="IdRol">Rol:</label>
+                        <select id="IdRol" name="IdRol" class="form-control" required>
+                            <option value="">Seleccione un Rol</option>
+                            @foreach (var rol in ViewBag.Roles)
+                            {
+                                <option value="@rol.IdRol">@rol.Nombre</option>
+                            }
+                        </select>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="crearNuevoUsuario()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* Modal para actualizar la informacion del usuario*@
+<div class="modal fade" id="actualizamodalusuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Actualizar Usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="crearUsuarioForm">
+                    <div class="form-group">
+                        <input id="idUsuario" name="idUsuario" class="form-control" type="hidden" />
+                        <label for="Nombre">Nombre de Usuario:</label>
+                        <input id="NombreUser" name="NombreUser" class="form-control" type="text" placeholder="Nombre Usuario" required />
+                        <label for="Nombre">Correo Electronico:</label>
+                        <input id="Correo2" name="Correo2" class="form-control" type="email" placeholder="Correo Electronico" required />
+                        <label for="IdRol">Rol:</label>
+                        <select id="IdRol2" name="IdRol2" class="form-control" required>
+                            <option value="">Seleccione un Rol</option>
+                            @foreach (var rol in ViewBag.Roles)
+                            {
+                                <option value="@rol.IdRol">@rol.Nombre</option>
+                            }
+                        </select>
+                        <br />
+                        <label for="Estado">Estado:</label>
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="EstadoSwitch" name="Estado" value="true">
+                            <label id="EstadoLabel" class="custom-control-label" for="EstadoSwitch">Activo</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="guardarCambiosUsuario()">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
