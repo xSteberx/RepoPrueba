@@ -8,21 +8,10 @@ using System.Diagnostics;
 namespace ProyectoPrograAvanzada1.Controllers
 {
     [ResponseCache(NoStore = true, Duration = 0)]
-    public class HomeController(IUsuarioModel _usuarioModel, IUtilitariosModel _utilitariosModel, ICategoriaModel _categoriaModel) : Controller
+    public class HomeController(IUsuarioModel _usuarioModel, IUtilitariosModel _utilitariosModel) : Controller
 
     {
-		[Seguridad]
-		public IActionResult AcercaDe()
-        {
-            return View();
-        }
-
-		[Seguridad]
-		public IActionResult PanelAdmin()
-        {
-			
-				return View(); 
-        }
+		
 		[HttpGet]
 		public IActionResult Politica()
 		{
